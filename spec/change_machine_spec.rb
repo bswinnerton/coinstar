@@ -27,7 +27,12 @@ describe ChangeMachine do
     end
   end
 
-  context 'Makes change for quantities up to 100 cents'
+  context 'Makes change for quantities up to 100 cents' do
+    it 'gracefully handles quanities larger than 100' do
+      expect { ChangeMachine.make_change(102) }.to raise_error
+    end
+  end
+
   context 'Makes cents from a given amount of currency and returns as a total number of cents'
   context 'Takes input from the command line'
 end

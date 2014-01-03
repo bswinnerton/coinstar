@@ -4,6 +4,7 @@ class ChangeMachine
   CURRENCY = {penny: 1, nickel: 5, dime: 10, quarter: 25}
 
   def self.make_change(cents)
+    raise 'You\'re going to need a bigger change machine' if cents > 100
     calculated_change = sorted_currency.inject({}) do |change, (k,v)|
       unless cents < v
         divisible = cents / v
