@@ -2,22 +2,22 @@ require 'spec_helper'
 
 describe ChangeMachine do
   context 'Makes change from a given amount of cents and returns a currency set' do
-    it 'for 1' do
+    it 'given 1' do
       change = ChangeMachine.make_change(1)
       expect(change).to eq( {pennies: 1} )
     end
 
-    it 'for 16' do
+    it 'given 16' do
       change = ChangeMachine.make_change(16)
       expect(change).to eq( {dimes: 1, nickels: 1, pennies: 1} )
     end
 
-    it 'for 23' do
+    it 'given 23' do
       change = ChangeMachine.make_change(23)
       expect(change).to eq( {dimes: 2, pennies: 3} )
     end
 
-    it 'for 98' do
+    it 'given 98' do
       change = ChangeMachine.make_change(98)
       expect(change).to eq( {quarters: 3, dimes: 2, pennies: 3} )
     end
@@ -29,6 +29,31 @@ describe ChangeMachine do
     end
   end
 
-  context 'Makes cents from a given amount of currency and returns as a total number of cents'
+  context 'Makes cents from a given amount of currency and returns as a total number of cents' do
+    it 'given 1 penny' do
+      currency = {pennies: 1}
+      cents = ChangeMachine.make_cents(currency)
+      expect(cents).to eq( 1 )
+    end
+
+    it 'given 2 dimes, 1 nickle, and 3 pennies' do
+      currency = {dimes: 2, nickels: 1, pennies: 3}
+      cents = ChangeMachine.make_cents(currency)
+      expect(cents).to eq( 28 )
+    end
+
+    it 'given 1 quarter, and 1 dime' do
+      currency = {quarters: 1, dimes: 1}
+      cents = ChangeMachine.make_cents(currency)
+      expect(cents).to eq( 35 )
+    end
+
+    it 'given 1 quarter, 2 dimes and 2 pennies' do
+      currency = {quarters: 1, dimes: 2, pennies: 2}
+      cents = ChangeMachine.make_cents(currency)
+      expect(cents).to eq( 47 )
+    end
+  end
+
   context 'Takes input from the command line'
 end

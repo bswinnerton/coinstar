@@ -16,6 +16,13 @@ class ChangeMachine
     pluralize(calculated_change)
   end
 
+  def self.make_cents(currency)
+    currency.inject(0) do |cents, (k,v)|
+      cents += (CURRENCY[singularize(k)] * v)
+      cents
+    end
+  end
+
   private
 
   def self.sorted_currency
@@ -28,5 +35,9 @@ class ChangeMachine
       plural_hash[plural_key.to_sym] = v
       plural_hash
     end
+  end
+
+  def self.singularize(symbol)
+    symbol.to_s.singularize.to_sym
   end
 end
