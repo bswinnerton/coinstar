@@ -56,6 +56,7 @@ Your program should provide for the following functionality:
 
 
 ### Gem Documentation
+[![Build Status](https://travis-ci.org/bswinnerton/coinstar.png)](https://travis-ci.org/bswinnerton/coinstar)
 
 ##### Installation
 
