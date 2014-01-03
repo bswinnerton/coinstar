@@ -1,0 +1,3 @@
+require 'coinstar'
+
+pass_arguments

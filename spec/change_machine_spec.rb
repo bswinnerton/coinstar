@@ -55,5 +55,15 @@ describe ChangeMachine do
     end
   end
 
-  context 'Takes input from the command line'
+  context 'Takes input from the command line' do
+    it 'makes change' do
+      command_line = `ruby bin/coinstar --make_change 98`
+      expect(command_line).to include '{:quarters=>3, :dimes=>2, :pennies=>3}'
+    end
+
+    it 'makes cents' do
+      command_line = `ruby bin/coinstar --make_cents quarters=3 dimes=2 pennies=3`
+      expect(command_line).to include '98'
+    end
+  end
 end
