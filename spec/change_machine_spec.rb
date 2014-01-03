@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe ChangeMachine do
-  it 'sorts the currency by the largest denomination' do
-    expect(ChangeMachine::CURRENCY).to eq( {quarter: 25, dime: 10, nickel: 5, penny: 1} )
-  end
-
   context 'Makes change from a given amount of cents and returns a currency set' do
     it 'for 1' do
       change = ChangeMachine.make_change(1)
