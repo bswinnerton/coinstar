@@ -1,1 +1,1 @@
-require 'change_machine'
+require 'coinstar'
