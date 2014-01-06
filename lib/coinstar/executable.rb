@@ -11,7 +11,6 @@ module Executable
     rescue NoMethodError
       raise 'Please enter either --make_change or --make_cents'
     end
-
     begin
       params = params.first.to_i if arg == :make_change
       params = params_to_hash(params) if arg == :make_cents
@@ -19,6 +18,7 @@ module Executable
       raise 'Please enter the change amount' if arg == :make_change
       raise 'Please enter the cents as quarters=25 format' if arg == :make_cents
     end
+
     {argument: arg, params: params}
   end
 

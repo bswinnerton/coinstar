@@ -77,11 +77,11 @@ Or install it yourself as:
 Simply call `coinstar` as so:
 
 ```
-coinstar --make_change 98
+$ coinstar --make_change 98
 ```
 
 or
 
 ```
-coinstar --make_cents quarters=1 dimes=2 nickels=3 pennies=4
+$ coinstar --make_cents quarters=1 dimes=2 nickels=3 pennies=4
 ```
