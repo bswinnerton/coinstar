@@ -63,7 +63,7 @@ describe ChangeMachine do
   context 'Takes input from the command line' do
     it 'makes change' do
       clean_input = ChangeMachine.clean_input(["--make_change", "98"])
-      expect(ChangeMachine.run(clean_input)).to eq( {:quarters=>3, :dimes=>2, :pennies=>3} )
+      expect(ChangeMachine.run(clean_input)).to eq( {quarters: 3, dimes: 2, pennies: 3} )
     end
 
     it 'makes cents' do
