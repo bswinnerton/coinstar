@@ -1,3 +1,4 @@
 require 'coinstar'
 
-pass_arguments
+clean_input = ChangeMachine.clean_input(ARGV)
+puts ChangeMachine.run(clean_input)
