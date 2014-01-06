@@ -25,7 +25,7 @@ describe ChangeMachine do
 
   context 'Makes change for quantities up to 100 cents' do
     it 'gracefully handles quanities larger than 100' do
-      expect { ChangeMachine.make_change(102) }.to raise_error
+      expect { ChangeMachine.make_change(102) }.to raise_error 'You\'re going to need a bigger change machine'
     end
   end
 
@@ -53,17 +53,30 @@ describe ChangeMachine do
       cents = ChangeMachine.make_cents(currency)
       expect(cents).to eq( 47 )
     end
+
+    it 'gracefully fails if the currency is unknown' do
+      currency = {pesos: 1}
+      expect { ChangeMachine.make_cents(currency) }.to raise_error 'Unknown currency type'
+    end
   end
 
   context 'Takes input from the command line' do
     it 'makes change' do
-      command_line = `ruby bin/coinstar --make_change 98`
-      expect(command_line).to include '{:quarters=>3, :dimes=>2, :pennies=>3}'
+      clean_input = ChangeMachine.clean_input(["--make_change", "98"])
+      expect(ChangeMachine.run(clean_input)).to eq( {:quarters=>3, :dimes=>2, :pennies=>3} )
     end
 
     it 'makes cents' do
-      command_line = `ruby bin/coinstar --make_cents quarters=3 dimes=2 pennies=3`
-      expect(command_line).to include '98'
+      clean_input = ChangeMachine.clean_input(["--make_cents", "quarters=3", "dimes=2", "pennies=3"])
+      expect(ChangeMachine.run(clean_input)).to eq( 98 )
+    end
+
+    it 'gracefully fails if an argument isn\'t set' do
+      expect { ChangeMachine.clean_input([]) }.to raise_error 'Please enter either --make_change or --make_cents'
+    end
+
+    it 'gracefully fails if parameters aren\'t set' do
+      expect { ChangeMachine.clean_input(["--make_change"]) }.to raise_error 'Please enter the change amount'
     end
   end
 end

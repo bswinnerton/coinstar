@@ -1,6 +1,9 @@
 require 'active_support/inflector'
+require_relative 'executable'
 
 class ChangeMachine
+  extend Executable
+
   CURRENCY = {penny: 1, nickel: 5, dime: 10, quarter: 25}
 
   def self.make_change(cents)
@@ -9,7 +12,7 @@ class ChangeMachine
       unless cents < v
         divisible = cents / v
         change[k] = divisible
-        cents = cents - (CURRENCY[k] * divisible)
+        cents -= (CURRENCY[k] * divisible)
       end
       change
     end
@@ -17,9 +20,13 @@ class ChangeMachine
   end
 
   def self.make_cents(currency)
-    currency.inject(0) do |cents, (k,v)|
-      cents += (CURRENCY[singularize(k)] * v)
-      cents
+    begin
+      currency.inject(0) do |cents, (k,v)|
+        cents += (CURRENCY[singularize(k)] * v)
+        cents
+      end
+    rescue NoMethodError
+      raise 'Unknown currency type'
     end
   end
 
