@@ -26,8 +26,8 @@ module Executable
 
   def params_to_hash(params)
     params.inject({}) do |hash, param|
-      cents = param.split('=')
-      hash[cents.first.to_sym] = cents.last.to_i
+      array = param.split('=')
+      hash[array.first.to_sym] = array.last.to_i
       hash
     end
   end
