@@ -11,18 +11,17 @@ class ChangeMachine
     calculated_change = sorted_currency.inject({}) do |change, (k,v)|
       unless cents < v
         divisible = cents / v
-        change[k] = divisible
+        change[k.to_s.pluralize.to_sym] = divisible
         cents -= (CURRENCY[k] * divisible)
       end
       change
     end
-    pluralize(calculated_change)
   end
 
   def self.make_cents(currency)
     begin
       currency.inject(0) do |cents, (k,v)|
-        cents += (CURRENCY[singularize(k)] * v)
+        cents += (CURRENCY[k.to_s.singularize.to_sym] * v)
         cents
       end
     rescue NoMethodError
@@ -34,17 +33,5 @@ class ChangeMachine
 
   def self.sorted_currency
     Hash[CURRENCY.sort_by{|k, v| v}.reverse]
-  end
-
-  def self.pluralize(hash)
-    hash.inject({}) do |plural_hash, (k,v)|
-      plural_key = k.to_s.pluralize
-      plural_hash[plural_key.to_sym] = v
-      plural_hash
-    end
-  end
-
-  def self.singularize(symbol)
-    symbol.to_s.singularize.to_sym
   end
 end
