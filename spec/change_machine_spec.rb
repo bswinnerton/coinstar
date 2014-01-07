@@ -62,13 +62,18 @@ describe ChangeMachine do
 
   context 'Takes input from the command line' do
     it 'makes change' do
-      clean_input = ChangeMachine.clean_input(["--make_change", "98"])
-      expect(ChangeMachine.run(clean_input)).to eq( {quarters: 3, dimes: 2, pennies: 3} )
+      clean_input = ChangeMachine.clean_input(['--make_change', '98'])
+      expect(ChangeMachine.run(clean_input)).to eq( ['quarters: 3', 'dimes: 2', 'pennies: 3'] )
     end
 
     it 'makes cents' do
-      clean_input = ChangeMachine.clean_input(["--make_cents", "quarters=3", "dimes=2", "pennies=3"])
+      clean_input = ChangeMachine.clean_input(['--make_cents', 'quarters=3', 'dimes=2', 'pennies=3'])
       expect(ChangeMachine.run(clean_input)).to eq( 98 )
+    end
+
+    it 'displays change nicely in the terminal' do
+      clean_input = ChangeMachine.clean_input(['--make_change', '76'])
+      expect(ChangeMachine.run(clean_input)).to eq( ['quarters: 3', 'pennies: 1'] )
     end
 
     it 'gracefully fails if an argument isn\'t set' do

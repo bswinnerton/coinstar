@@ -1,6 +1,7 @@
 module Executable
   def run(args)
-    self.send(args[:argument], args[:params]) if self.respond_to? args[:argument]
+    result = self.send(args[:argument], args[:params]) if self.respond_to? args[:argument]
+    display(result)
   end
 
   def clean_input(args)
@@ -29,6 +30,14 @@ module Executable
       array = param.split('=')
       hash[array.first.to_sym] = array.last.to_i
       hash
+    end
+  end
+
+  def display(result)
+    if result.is_a? Hash
+      result.map { |k,v| "#{k}: #{v}" }
+    else
+      result
     end
   end
 end
