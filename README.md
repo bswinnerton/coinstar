@@ -1,3 +1,37 @@
+### Gem Documentation
+[![Build Status](https://travis-ci.org/bswinnerton/coinstar.png)](https://travis-ci.org/bswinnerton/coinstar)
+[![Code Climate](https://codeclimate.com/github/bswinnerton/coinstar.png)](https://codeclimate.com/github/bswinnerton/coinstar)
+
+##### Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'coinstar'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install coinstar
+
+##### Usage
+
+Simply call `coinstar` as so:
+
+```
+$ coinstar --make_change 98
+```
+
+or
+
+```
+$ coinstar --make_cents quarters=1 dimes=2 nickels=3 pennies=4
+```
+
+#####Requirements
+
 ![GA_Logo](https://raw.github.com/generalassembly/ga-ruby-on-rails-for-devs/master/images/ga.png)
 
 
@@ -53,35 +87,3 @@ Your program should provide for the following functionality:
 - Simplicity/elegance of design (be prepared to discuss)
 - Maintainability (clean, code that is easy to understand and change)
 - Testing (We encourage RSpec)
-
-
-### Gem Documentation
-[![Build Status](https://travis-ci.org/bswinnerton/coinstar.png)](https://travis-ci.org/bswinnerton/coinstar)
-
-##### Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'coinstar'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install coinstar
-
-##### Usage
-
-Simply call `coinstar` as so:
-
-```
-$ coinstar --make_change 98
-```
-
-or
-
-```
-$ coinstar --make_cents quarters=1 dimes=2 nickels=3 pennies=4
-```
