@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'coinstar'
-  spec.version       = '0.0.3'
+  spec.version       = '0.0.4'
   spec.authors       = ['Brooks Swinnerton']
   spec.email         = ['bswinnerton@gmail.com']
   spec.description   = %q{GA Apprentice Code Challenge}
