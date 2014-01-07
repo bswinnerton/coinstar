@@ -75,8 +75,12 @@ describe ChangeMachine do
       expect { ChangeMachine.clean_input([]) }.to raise_error 'Please enter either --make_change or --make_cents'
     end
 
-    it 'gracefully fails if parameters aren\'t set' do
+    it 'gracefully fails if parameters aren\'t set with make_change' do
       expect { ChangeMachine.clean_input(["--make_change"]) }.to raise_error 'Please enter the change amount'
+    end
+
+    it 'gracefully fails if parameters aren\'t set with make_cents' do
+      expect { ChangeMachine.clean_input(["--make_cents"]) }.to raise_error 'Please enter the cents as quarters=25 format'
     end
   end
 end
