@@ -1,6 +1,7 @@
 ### Gem Documentation
 [![Build Status](https://travis-ci.org/bswinnerton/coinstar.png)](https://travis-ci.org/bswinnerton/coinstar)
 [![Code Climate](https://codeclimate.com/github/bswinnerton/coinstar.png)](https://codeclimate.com/github/bswinnerton/coinstar)
+[![Coverage Status](https://coveralls.io/repos/bswinnerton/coinstar/badge.png?branch=master)](https://coveralls.io/r/bswinnerton/coinstar?branch=master)
 
 ##### Installation
 
