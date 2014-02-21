@@ -8,13 +8,12 @@ class ChangeMachine
 
   def self.make_change(cents)
     raise 'You\'re going to need a bigger change machine' if cents > 100
-    calculated_change = sorted_currency.inject({}) do |change, (k,v)|
+    calculated_change = sorted_currency.each_with_object({}) do |(k,v), change|
       unless cents < v
         divisible = cents / v
         change[k.to_s.pluralize.to_sym] = divisible
         cents -= (CURRENCY[k] * divisible)
       end
-      change
     end
   end
 
@@ -22,7 +21,6 @@ class ChangeMachine
     begin
       currency.inject(0) do |cents, (k,v)|
         cents += (CURRENCY[k.to_s.singularize.to_sym] * v)
-        cents
       end
     rescue NoMethodError
       raise 'Unknown currency type'

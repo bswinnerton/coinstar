@@ -26,10 +26,9 @@ module Executable
   private
 
   def params_to_hash(params)
-    params.inject({}) do |hash, param|
+    params.each_with_object({}) do |param, hash|
       array = param.split('=')
       hash[array.first.to_sym] = array.last.to_i
-      hash
     end
   end
 
